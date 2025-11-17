@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="movie-library.vcxproj" Id="6415c333-64e7-4e81-8ee4-2672e6f56948" />
+</Solution>
