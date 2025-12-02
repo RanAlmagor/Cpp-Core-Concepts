@@ -1,38 +1,36 @@
 ## 🧱 Core Concepts Demonstrated
 
-This project is a practical application of foundational C++ OOP concepts:
+This project is a hands-on implementation of core C++ OOP principles:
 
 - **Classes & Objects**  
-  Implementation of two distinct classes:
-  - `Movie`: models a single movie (name, rating, watch count).
-  - `Movies`: manages the entire collection of `Movie` objects.
+  Two cohesive classes:
+  - `Movie` – models a single movie (title, rating, watch count).
+  - `Movies` – manages a collection of `Movie` instances.
 
 - **Encapsulation**  
-  Correct use of `public` and `private` access specifiers to protect object data.
+  Clear separation of interface and implementation using `public` / `private` members to protect internal state.
 
-- **Constructors / Destructors**  
-  Proper use of constructors (including a copy constructor) and a destructor for object lifecycle management.
+- **Constructors & Destructors**  
+  Proper use of constructors (including copy construction where needed) and a destructor to manage object lifetime.
 
 - **const-Correctness**  
-  Using the `const` keyword on member functions that do not modify the object's state (e.g. `display()`, getters).
+  Member functions that do not modify the object (such as getters and `display()`) are marked `const` to enforce correctness at compile time.
 
 - **STL Containers**  
-  Using `std::vector` to hold a collection of custom objects (`std::vector<Movie>`).
+  `std::vector<Movie>` is used as the underlying container to store and manage the movie collection efficiently.
 
-- **File Separation**  
-  Organizing the project into `.h` (header/specification) and `.cpp` (implementation) files for a clean and maintainable architecture.
+- **File Organization**  
+  Clean separation into header (`.h`) and implementation (`.cpp`) files for better modularity and maintainability.
 
 ---
 
 ## ⚙️ Key Features
 
 - **Add Movie**  
-  Adds a new `Movie` object to the collection.  
-  Includes logic to prevent duplicate movie names.
+  Adds a new `Movie` to the collection, with logic to avoid duplicate titles and keep the dataset consistent.
 
 - **Increment Watch Count**  
-  Finds a movie by name and increments its `watch_count`.  
-  Includes error handling for cases where the movie is not found.
+  Locates a movie by name and increments its `watch_count`, with handling for cases where the movie does not exist in the collection.
 
 - **Display All Movies**  
-  Iterates through the `std::vector` and delegates the display responsibility to each `Movie` object's `display()` method.
+  Iterates over the `std::vector<Movie>` and delegates formatting and output to each `Movie::display()` function, keeping responsibilities well-encapsulated.
