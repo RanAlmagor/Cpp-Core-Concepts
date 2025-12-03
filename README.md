@@ -110,4 +110,4 @@ This portfolio documents a structured progression from syntax to architecture:
 ## 👨‍💻 Author
 
 **Ran Almagor**  
-*C++ Developer *
+*C++ Developer*
