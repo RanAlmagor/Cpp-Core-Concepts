@@ -1,21 +1,30 @@
-# Polymorphic Banking System
+# 🌟 Polymorphic Banking System
 
 ![Language](https://img.shields.io/badge/language-Modern%20C%2B%2B-blue.svg)
 ![Architecture](https://img.shields.io/badge/architecture-OOD%20%26%20Polymorphism-orange.svg)
 ![Safety](https://img.shields.io/badge/safety-Exception%20Handling-green.svg)
+![Memory](https://img.shields.io/badge/memory-RAII%20%7C%20Smart%20Pointers-9cf.svg)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-## 📖 Overview
+> A compact **financial system** in modern C++ that demonstrates **runtime polymorphism**, a clean **Printable** interface for uniform streaming, **RAII** with smart pointers, and **custom exceptions** for robust error handling.
 
-A compact **financial system simulation** that demonstrates modern C++ **Object-Oriented Design**:  
-**Runtime Polymorphism**, a clean **Printable** interface for uniform streaming, **RAII** with smart pointers, and **custom exceptions** for robust error handling.
+---
+
+## 🧭 Overview
+
+This repository models a small banking domain with multiple account types and clear domain rules.  
+The design favors **clarity**, **safety**, and **extensibility**:
+- **Abstract base** `Account` with pure-virtual `deposit/withdraw`
+- **Interface** `I_Printable` + free `operator<<` → uniform streaming
+- **Exceptions** derived from `std::exception` for illegal balance / overdraft
+- **Polymorphic containers** using `std::unique_ptr` / `std::shared_ptr`
 
 ---
 
 ## 🏗️ System Architecture (UML)
 
-The diagram shows the inheritance and interface relationships.  
-`Trust_Account` specializes `Savings_Account`: it inherits interest logic and adds stricter rules.
+The diagram highlights inheritance and interface relationships.  
+`Trust_Account` specializes `Savings_Account` (inherits interest logic, adds stricter rules).
 
 ```mermaid
 classDiagram
@@ -74,35 +83,32 @@ classDiagram
 
 ---
 
-## 🚀 Business Logic & Rules
+## 🚀 Business Rules
 
-### 1. `Account` (Abstract Base)
-- **Role:** Defines the contract (`deposit`, `withdraw`) for all accounts.
-- **Safety:** Construction with a negative starting balance throws `IllegalBalanceException`.
+### 1) `Account` (Abstract)
+- **Contract:** `deposit(double)`, `withdraw(double)` (pure virtual).
+- **Safety:** Constructing with a negative balance throws **`IllegalBalanceException`**.
 
-### 2. `Savings_Account`
-- **Base:** Inherits from `Account`.
-- **Logic:** Adds interest (%) to each deposit.  
-  _Formula:_ `amount += amount * (interest_rate / 100.0)` then deposit.
+### 2) `Savings_Account`
+- **Logic:** Adds interest on deposit.  
+  _Formula:_ `amount += amount * (interest_rate / 100.0)`.
 
-### 3. `Checking_Account`
-- **Base:** Inherits from `Account`.
-- **Logic:** Applies a fixed **transaction fee** (e.g., `$1.50`) on every withdrawal.
+### 3) `Checking_Account`
+- **Logic:** Fixed **transaction fee** (e.g., `$1.50`) on each withdrawal.
 
-### 4. `Trust_Account`
-- **Base:** Inherits from `Savings_Account`.
-- **Bonus:** Deposits over **$5000** earn a **$50** bonus.
-- **Restrictions:** Up to **3 withdrawals/year**; each withdrawal ≤ **20%** of current balance.
-- **Safety:** Violations throw `InsufficientFundsException`.
+### 4) `Trust_Account`
+- **Bonus:** Deposits **> $5000** earn an immediate **$50** bonus.  
+- **Limits:** Up to **3 withdrawals/year**; each withdrawal ≤ **20%** of current balance.  
+- **Safety:** Violations throw **`InsufficientFundsException`**.
 
 ---
 
-## 🛠️ Technical Concepts
+## 🛠️ Technical Highlights
 
-- **Dynamic Polymorphism:** `std::vector<std::unique_ptr<Account>>` with virtual calls at runtime.
-- **Interface Segregation:** `I_Printable` decouples printing from domain logic; a single `operator<<` works for all printables.
-- **RAII:** `std::unique_ptr`/`std::make_unique` (no raw `new`/`delete`).
-- **Exception Safety:** Clear throw points; catch via `const std::exception&`, messages via `what()`.
+- **Dynamic polymorphism:** `std::vector<std::unique_ptr<Account>>` with virtual dispatch.
+- **Interface segregation:** `I_Printable` decouples streaming from domain logic; one `operator<<` covers all printables.
+- **RAII:** Smart pointers (`std::unique_ptr`, `std::make_unique`) — no raw `new`/`delete`.
+- **Exception safety:** Clear throw points; catch by `const std::exception&`, report via `what()`.
 
 ---
 
@@ -138,31 +144,6 @@ try {
 catch (const std::exception& ex) {
     std::cerr << "Transaction Failed: " << ex.what() << std::endl;
 }
-```
-
----
-
-## 🔧 Build
-
-**g++ (single TU example):**
-```bash
-g++ -std=c++17 -O2 -Wall -Wextra -Werror \
-  Account.cpp Savings_Account.cpp Checking_Account.cpp Trust_Account.cpp main.cpp \
-  -o demo
-./demo
-```
-
-**CMake (recommended):**
-```cmake
-cmake_minimum_required(VERSION 3.15)
-project(PolymorphicBankingSystem CXX)
-set(CMAKE_CXX_STANDARD 17)
-add_executable(demo
-  Account.cpp Savings_Account.cpp Checking_Account.cpp Trust_Account.cpp main.cpp
-)
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-  target_compile_options(demo PRIVATE -Wall -Wextra -Werror)
-endif()
 ```
 
 ---
