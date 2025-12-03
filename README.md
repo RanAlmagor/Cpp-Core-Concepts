@@ -6,62 +6,87 @@
 
 ## 📖 Overview
 
-This repository serves as a master portfolio of my journey through **Modern C++ Engineering**.
-It contains a collection of focused projects, each designed to master specific pillars of the language, ranging from low-level memory mechanics to high-level object-oriented architecture.
+This repository serves as a portfolio of my journey through **Modern C++ engineering**.  
+It contains a collection of focused projects, each designed to deepen mastery of different pillars of the language – from low-level memory mechanics to high-level object-oriented architecture.
 
 **Key Focus Areas:**
-* **Object-Oriented Design (OOD)** & Polymorphism.
-* **Low-Level Memory Management** (RAII, Pointers, Stack vs Heap).
-* **Operator Overloading** & API Design.
-* **STL** (Standard Template Library) usage.
+- **Object-Oriented Design (OOD)** & polymorphism  
+- **Low-Level Memory Management** (RAII, pointers, stack vs heap)  
+- **Operator Overloading** & API design  
+- **STL** (Standard Template Library) usage  
 
 ---
 
 ## 📂 Project Catalog
 
-### 1️⃣ `movie-library`
+### 1️⃣ `movie-library`  
 > **Focus:** Class Basics, Encapsulation & Data Structures
 
-A console-based application designed to manage a personal movie collection. This project establishes the foundations of class design.
-* **Key Concepts:** Classes, Objects, Access Modifiers, `std::vector` management.
-* **Architecture:** Clean separation of concerns using Header (`.h`) and Source (`.cpp`) files.
+A console-based application designed to manage a personal movie collection.  
+This project establishes the foundations of class design and working with containers.
+
+- **Key Concepts:** Classes, objects, access modifiers, `std::vector` management  
+- **Architecture:** Clean separation of concerns using header (`.h`) and source (`.cpp`) files  
 
 > 📂 Folder: `movie-library/`
 
 ---
 
-### 2️⃣ `My-String-Operator-Overloading`
+### 2️⃣ `My-String-Operator-Overloading`  
 > **Focus:** Advanced Memory Management (RAII) & Operator Overloading
 
-A comprehensive, high-performance implementation of a custom String class. This project demonstrates deep understanding of how C++ manages resources "under the hood."
+A custom string implementation built from scratch to explore how C++ manages resources “under the hood”.
 
-**Architectural Approaches:**
-This project explores two different design patterns for operator overloading:
-* **V1 (Member Functions):** Standard OOP implementation using `this`.
-* **V2 (Global Functions):** Symmetric operator design using `friend` functions for seamless interoperability.
+**Architectural Variants:**
+This project explores two different design approaches for operator overloading:
+
+- **V1 – Member Functions**  
+  Standard OOP design using member operators and `this`.
+
+- **V2 – Global / Friend Functions**  
+  Symmetric operator design implemented as non-member functions with `friend` access.
 
 **Core Mechanics Implemented:**
-* **Rule of Five:** Copy/Move Constructors & Assignment Operators.
-* **Move Semantics:** Efficient resource transfer (r-value references) to prevent unnecessary copying.
-* **Deep Copying:** Safe manual heap allocation (`new[]`/`delete[]`).
-* **Full Operator Suite:** Arithmetic (`+`, `+=`), Comparison (`==`, `<`), Stream I/O (`<<`, `>>`), and Access (`[]`).
 
-> 📂 Folder: `My-String-Operator-Overloading/`
+- **Rule of Five:**  
+  Custom copy/move constructors and copy/move assignment operators, plus destructor.
+- **Move Semantics:**  
+  Efficient resource transfer with rvalue references to avoid unnecessary copies.
+- **Deep Copying:**  
+  Manual heap management with `new[]` / `delete[]`, no `std::string` used internally.
+- **Operator Suite:**  
+  Concatenation (`+`, `+=`), comparison (`==`, `<`, `!=`, `>`), stream I/O (`<<`, `>>`), access (`[]`), and additional transformations (e.g. case changes).
+
+> 📂 Folder: `My-String-Operator-Overloading/`  
+> – `V1/` → member-based implementation  
+> – `V2/` → global/friend-based implementation  
 
 ---
 
-### 3️⃣ `Polymorphic-Banking-System`
-> **Focus:** Inheritance, Polymorphism & Complex Business Logic
+### 3️⃣ `Polymorphic-Banking-System`  
+> **Focus:** Inheritance, Polymorphism & Business Logic
 
-A scalable financial system simulation designed to manage a hierarchy of bank accounts with varying business rules and behaviors.
+A small banking system designed to model different types of bank accounts and their behavior.
 
-**System Architecture:**
-* **Inheritance Hierarchy:** A base `Account` class derived into specialized types:
-    * **`Savings_Account`:** Implements interest rate logic for deposits.
-    * **`Checking_Account`:** Implements transaction fee logic for withdrawals.
-    * **`Trust_Account`:** Complex logic including bonus structures and strict withdrawal limits (max 3 per year, max 20% of balance).
-* **Polymorphism:** Utilizing `virtual` functions and dynamic binding to manage generic account collections.
-* **Design Patterns:** Usage of helper functions to manage account operations uniformly across the hierarchy.
+**Current architecture:**
+
+- **Base class:**  
+  `Account` – holds a name and balance, provides `deposit`/`withdraw` with boolean success flags and stream output (`operator<<`).
+
+- **Derived class (current stage):**  
+  `Savings_Account` – extends `Account` with an interest rate and a specialized `deposit` that applies interest before delegating to `Account::deposit`.
+
+- **Utility layer:**  
+  Free helper functions (in `account_util`) that operate on collections of accounts:
+  - `display(accounts)`, `deposit(accounts, amount)`, `withdraw(accounts, amount)`  
+  - Overloaded both for `std::vector<Account>` and `std::vector<Savings_Account>`
+
+**Planned extensions (next phases):**
+
+- `Checking_Account` – transaction fee logic  
+- `Trust_Account` – bonus rules and stricter withdrawal limits (e.g. max 3 withdrawals, max 20% of balance each)
+
+These steps will introduce true runtime **polymorphism** using `virtual` functions and dynamic binding over a hierarchy of account types.
 
 > 📂 Folder: `Polymorphic-Banking-System/`
 
@@ -71,12 +96,18 @@ A scalable financial system simulation designed to manage a hierarchy of bank ac
 
 This portfolio documents a structured progression from syntax to architecture:
 
-1.  **Basics:** Understanding objects, scope, and containers (`movie-library`).
-2.  **The "Guts":** Mastering pointers, references, memory layout, and RAII (`My-String`).
-3.  **Architecture:** Building scalable, extensible systems using Inheritance and Polymorphism (`Banking-System`).
+1. **Basics** – Understanding objects, scope, and containers  
+   → `movie-library`
+
+2. **The “Guts”** – Mastering pointers, references, memory layout, and RAII  
+   → `My-String-Operator-Overloading`
+
+3. **Architecture** – Building scalable, extensible systems using inheritance and polymorphism  
+   → `Polymorphic-Banking-System`
 
 ---
 
 ## 👨‍💻 Author
-**Ran Almagor**
-*C++ Developer*
+
+**Ran Almagor**  
+*C++ Developer *
