@@ -1,60 +1,70 @@
 # Cpp-Core-Concepts
 
-This repository contains a collection of small C++ projects that I use to practice and demonstrate core C++ concepts:
-object-oriented design, operator overloading, STL usage, and manual memory management (Rule of 5).
+![Language](https://img.shields.io/badge/language-C++14-blue.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
+
+This repository serves as a master portfolio of my journey through **Modern C++**.
+It contains a collection of focused projects, each designed to master specific pillars of the language:
+**Object-Oriented Design (OOD)**, **Low-Level Memory Management**, **Operator Overloading**, and **Polymorphism**.
 
 ---
 
-## 📂 Projects
+## 📂 Project Catalog
 
 ### 1️⃣ `movie-library`
+> **Focus:** Class Basics & Encapsulation
 
-A small console application that manages a collection of movies.  
-Key concepts:
+A console-based application for managing a personal movie collection.
+* **Key Concepts:** Classes, Objects, Access Modifiers, `std::vector` usage.
+* **Architecture:** Separation of concerns using header/source files.
 
-- Classes & objects (`Movie`, `Movies`)
-- Encapsulation with `public` / `private`
-- Constructors, destructors, and const-correctness
-- `std::vector<Movie>` as the underlying container
-- Clean separation into `.h` / `.cpp` files
-
-> Folder: `movie-library/`
+> 📂 Folder: `movie-library/`
 
 ---
 
 ### 2️⃣ `My-String-Operator-Overloading`
+> **Focus:** Low-Level Memory Management (RAII) & Operator Overloading
 
-A custom string class implementation that focuses on operator overloading and memory management.
+A comprehensive implementation of a custom String class, built from scratch to demonstrate mastery of raw pointers and memory handling.
 
-> Folder: `My-String-Operator-Overloading/`
+This project includes **two architectural approaches**:
+* **V1 (Member Functions):** Standard OOP implementation using `this`.
+* **V2 (Global Functions):** Symmetric operator design using `friend` functions.
 
-This project currently has **two versions**:
+**Core Mechanics:**
+* **Rule of Five:** Copy/Move Constructors & Assignment Operators.
+* **Deep Copying:** Safe manual heap allocation (`new[]`/`delete[]`).
+* **Full Operator Suite:** Arithmetic (`+`, `+=`), Comparison (`==`, `<`), and Stream I/O.
 
-#### 🔹 V1 – Member Implementation  
-> Folder: `My-String-Operator-Overloading/V1-Member-Implementation/`
-
-A member-based implementation of a `Mystring` class that demonstrates:
-
-- Full Rule of 5 (ctor, dtor, copy/move ctor, copy/move assignment)
-- Manual `new[]` / `delete[]` management
-- Deep copy & move semantics
-- Rich operator overloading:  
-  `<<`, `>>`, `==`, `!=`, `<`, `>`, `+`, `+=`, `*`, `*=`, `++` (prefix & postfix), `operator[]`, unary `-` (lowercase)
-- Null-safe getters and a small display helper
-
-#### 🔹 V2 – Global Implementation  
-> Folder: `My-String-Operator-Overloading/V2-Global-Implementation/`
-
-A second version of the same idea, using more **non-member / friend** operators and a slightly different design approach, to contrast member-based vs. global operator implementations.
+> 📂 Folder: `My-String-Operator-Overloading/`
 
 ---
 
-## 🧠 Goals of This Repository
+### 3️⃣ `Polymorphic-Banking-System`
+> **Focus:** Inheritance, Polymorphism & Business Logic
 
-- Practice **modern C++ fundamentals** on small, focused projects  
-- Demonstrate understanding of:
-  - OOP (encapsulation, classes, interfaces)
-  - Resource management and Rule of 5
-  - STL containers (`std::vector`, etc.)
-  - Operator overloading and clean API design
-- Build a portfolio of clear, well-structured C++ examples.
+A financial system simulation designed to manage a hierarchy of bank accounts with varying business rules.
+
+**Current Architecture:**
+* **Inheritance Hierarchy:** A base `Account` class derived into specialized types:
+    * `Savings_Account` (Interest logic)
+    * `Checking_Account` (Transaction fees)
+    * `Trust_Account` (Bonus structures & withdrawal limits)
+* **Design Patterns:** Usage of helper functions to manage account operations uniformly.
+* **Goal:** To demonstrate how specialized behavior is achieved through class derivation and overriding.
+
+> 📂 Folder: `Polymorphic-Banking-System/`
+
+---
+
+## 🧠 Roadmap & Mastery Goals
+
+This repository documents the progression from syntax to architecture:
+1.  **Basics:** Understanding objects and containers (`movie-library`).
+2.  **The "Guts":** Mastering pointers, references, and memory layout (`My-String`).
+3.  **Architecture:** Building scalable systems using Inheritance and Polymorphism (`Banking-System`).
+
+---
+
+## 👨‍💻 Author
+**Ran Almagor** - *C++ Developer*
