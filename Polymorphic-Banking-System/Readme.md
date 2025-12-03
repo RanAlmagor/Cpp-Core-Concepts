@@ -30,55 +30,73 @@ The diagram highlights inheritance and interface relationships.
 classDiagram
     direction TB
 
-    %% Interface
+    %% --- Core Abstractions ---
     class I_Printable {
-        <<interface>>
-        +print(std::ostream& os) const
+        <<Interface>>
+        +print(ostream) void*
     }
 
-    %% Abstract Base
     class Account {
-        <<abstract>>
+        <<Abstract Base>>
         #string name
         #double balance
-        +deposit(double) bool*
-        +withdraw(double) bool*
+        +deposit(double)* bool
+        +withdraw(double)* bool
         +virtual ~Account()
     }
 
-    %% Concrete Classes
+    %% --- Concrete Implementations ---
     class Checking_Account {
         -double fee
-        +withdraw(double) bool
+        +withdraw(double)
     }
 
     class Savings_Account {
         #double interest_rate
-        +deposit(double) bool
+        +deposit(double)
     }
 
     class Trust_Account {
+        <<Specialized>>
         -int withdrawals_left
-        +deposit(double) bool
-        +withdraw(double) bool
+        +deposit(double)
+        +withdraw(double)
     }
 
-    %% Exceptions
-    class std_exception {
-        <<std::exception>>
-        +what() const noexcept : const char*
+    %% --- Exception Handling ---
+    class IllegalBalanceException {
+        <<Exception>>
     }
-    class IllegalBalanceException
-    class InsufficientFundsException
+    class InsufficientFundsException {
+        <<Exception>>
+    }
 
-    %% Relationships
-    I_Printable <|.. Account
-    Checking_Account --|> Account
-    Savings_Account --|> Account
-    Trust_Account --|> Savings_Account
+    %% --- Relationships (Inheritance) ---
+    I_Printable <|.. Account : Implements
+    Account <|-- Checking_Account
+    Account <|-- Savings_Account
+    Savings_Account <|-- Trust_Account : Extends
 
-    IllegalBalanceException --|> std_exception
-    InsufficientFundsException --|> std_exception
+    %% --- Dependencies (Who throws what?) ---
+    Account ..> IllegalBalanceException : Throws (Ctor)
+    Account ..> InsufficientFundsException : Throws (Withdraw)
+    Trust_Account ..> InsufficientFundsException : Throws (Limits)
+
+    %% --- Styling (Pro Palette) ---
+    %% Dark Grey for Base/Interface
+    style I_Printable fill:#2d3436,stroke:#b2bec3,stroke-width:2px,color:#fff
+    style Account fill:#2d3436,stroke:#b2bec3,stroke-width:2px,color:#fff
+    
+    %% Green/Teal for Standard Accounts
+    style Checking_Account fill:#00b894,stroke:#006266,color:#fff
+    style Savings_Account fill:#00b894,stroke:#006266,color:#fff
+    
+    %% Royal Blue for the "Power" Account
+    style Trust_Account fill:#0984e3,stroke:#2980b9,stroke-width:2px,color:#fff
+
+    %% Red/Orange for Exceptions
+    style IllegalBalanceException fill:#d63031,stroke:#c0392b,color:#fff,stroke-dasharray: 5 5
+    style InsufficientFundsException fill:#d63031,stroke:#c0392b,color:#fff,stroke-dasharray: 5 5
 ```
 
 ---
