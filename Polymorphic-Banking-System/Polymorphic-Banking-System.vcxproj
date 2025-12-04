@@ -145,6 +145,9 @@
     <ClCompile Include="Savings_Account.cpp" />
     <ClCompile Include="Trust_Account.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Readme.md" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
