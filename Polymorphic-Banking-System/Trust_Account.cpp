@@ -8,7 +8,7 @@ Trust_Account::Trust_Account(std::string name, double balance, double  int_rate)
 void Trust_Account::deposit(double amount)
 {
 	
-    if (amount >= 10000.0)
+    if (amount >= 5000.0)
     {
         amount += 100.0;
     }
