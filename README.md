@@ -12,8 +12,8 @@ It contains a collection of focused projects, each designed to master specific p
 **Key Focus Areas:**
 * **Object-Oriented Design (OOD)** & Polymorphism.
 * **Low-Level Memory Management** (RAII, Pointers, Stack vs Heap).
-* **Smart Pointers** & Modern Syntax (C++14/17).
-* **Operator Overloading** & API Design.
+* **Smart Pointers** & Modern Syntax (C++14/17/20).
+* **Exception Handling** & robust API Design.
 
 ---
 
@@ -54,24 +54,21 @@ This project demonstrates how to build complex data structures using **RAII** co
 * **`std::unique_ptr`:** Exclusive ownership and `std::make_unique`.
 * **`std::shared_ptr`:** Shared ownership and reference counting mechanics.
 * **Complex Types:** Managing nested structures like `std::unique_ptr<std::vector<std::shared_ptr<T>>>`.
-* **Functions:** Passing smart pointers correctly (by reference vs by value).
 
 > 📂 Folder: `Smart-Pointers-Lab/`
 
 ---
 
 ### 4️⃣ `Polymorphic-Banking-System`
-> **Focus:** Inheritance, Polymorphism & Business Logic
+> **Focus:** Advanced OOD, Runtime Polymorphism, Exception Handling & Smart Pointers
 
-A scalable financial system simulation designed to manage a hierarchy of bank accounts with varying business rules. This is the "Flagship Project" that combines all previous concepts.
+A robust, enterprise-grade financial simulation demonstrating modern C++ architectural patterns. This is the "Flagship Project" combining all previous concepts into a secure system.
 
 **System Architecture:**
-* **Inheritance Hierarchy:** A base `Account` class derived into specialized types:
-    * **`Savings_Account`:** Implements interest rate logic.
-    * **`Checking_Account`:** Implements transaction fees.
-    * **`Trust_Account`:** Complex logic with bonus structures and withdrawal limits.
-* **Polymorphism:** Utilizing `virtual` functions and dynamic binding to manage generic account collections.
-* **Safety:** Exception handling for illegal operations (Insufficent Funds).
+* **Polymorphic Container:** Managed via `std::vector<std::unique_ptr<Account>>` for automatic memory cleanup.
+* **Inheritance Hierarchy:** Abstract base `Account` → `Savings` → `Checking` → `Trust` (VIP logic with limits & bonuses).
+* **Exception Safety:** Replaced legacy boolean returns with a full suite of custom exceptions (`InsufficientFunds`, `IllegalAmount`) inheriting from `std::exception`.
+* **Interface Segregation:** Implements `I_Printable` for uniform stream output.
 
 > 📂 Folder: `Polymorphic-Banking-System/`
 
@@ -84,7 +81,7 @@ This portfolio documents a structured progression from syntax to architecture:
 1.  **Basics:** Understanding objects and containers (`movie-library`).
 2.  **The "Guts":** Mastering pointers, references, and memory layout (`My-String`).
 3.  **Modern Safety:** Moving from manual memory management to Smart Pointers (`Smart-Pointers-Lab`).
-4.  **Architecture:** Building scalable systems using Inheritance and Polymorphism (`Banking-System`).
+4.  **Architecture:** Building scalable systems using Inheritance, Polymorphism, and Exceptions (`Banking-System`).
 
 ---
 
