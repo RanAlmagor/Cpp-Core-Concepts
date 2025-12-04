@@ -5,20 +5,20 @@ Savings_Account::Savings_Account(std::string name, double balance, double int_ra
 { }
 
 // --- Deposit (Specialized) ---
-bool Savings_Account::deposit(double amount)
+void Savings_Account::deposit(double amount)
 {
     
     amount += amount * (int_rate / 100);
 
    
-    return Account::deposit(amount);
+    Account::deposit(amount);
 }
-bool Savings_Account::withdraw(double amount)
+void Savings_Account::withdraw(double amount)
 {
-    return Account::withdraw(amount);
+     Account::withdraw(amount);
 }
 
-// --- Print ---
+// --- Print (Specialized) ---
 void Savings_Account::print(std::ostream& os) const
 {
     Account::print(os);
