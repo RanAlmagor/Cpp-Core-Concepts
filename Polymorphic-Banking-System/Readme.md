@@ -22,16 +22,11 @@ This repository models a banking domain with strict business rules. The design f
 
 ## 🏗️ System Architecture (UML)
 
-The diagram illustrates the inheritance hierarchy. Note how all custom exceptions inherit from the standard `std::exception`, ensuring compatibility with standard `catch` blocks.
+The diagram illustrates the inheritance hierarchy and the dependency on custom exceptions. Note that transaction methods return `void` and rely on the stack unwinding mechanism for error reporting.
 
 ```mermaid
 classDiagram
     direction TB
-
-    %% --- Standard Library ---
-    class std_exception["std::exception"] {
-        <<Standard Lib>>
-    }
 
     %% --- Core Abstractions ---
     class I_Printable {
@@ -73,12 +68,7 @@ classDiagram
     class IllegalAmountException { <<Exception>> }
     class IllegalNameException { <<Exception>> }
 
-    %% --- Relationships (Inheritance) ---
-    std_exception <|-- IllegalBalanceException
-    std_exception <|-- InsufficientFundsException
-    std_exception <|-- IllegalAmountException
-    std_exception <|-- IllegalNameException
-
+    %% --- Relationships ---
     I_Printable <|.. Account : Implements
     Account <|-- Checking_Account
     Account <|-- Savings_Account
@@ -90,17 +80,17 @@ classDiagram
     Account ..> IllegalAmountException : Throws (Validation)
     Account ..> InsufficientFundsException : Throws (Logic)
     Trust_Account ..> InsufficientFundsException : Throws (Limits)
+    Trust_Account ..> IllegalAmountException : Throws (20% Rule)
 
     %% --- Styling ---
     style I_Printable fill:#2d3436,stroke:#b2bec3,stroke-width:2px,color:#fff
     style Account fill:#2d3436,stroke:#b2bec3,stroke-width:2px,color:#fff
-    style std_exception fill:#2d3436,stroke:#b2bec3,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
-    
     style Checking_Account fill:#00b894,stroke:#006266,color:#fff
     style Savings_Account fill:#00b894,stroke:#006266,color:#fff
     style Trust_Account fill:#0984e3,stroke:#2980b9,stroke-width:2px,color:#fff
     
-    style IllegalBalanceException fill:#d63031,stroke:#c0392b,color:#fff
-    style InsufficientFundsException fill:#d63031,stroke:#c0392b,color:#fff
-    style IllegalAmountException fill:#d63031,stroke:#c0392b,color:#fff
-    style IllegalNameException fill:#d63031,stroke:#c0392b,color:#fff
+    %% Red styling for Exceptions
+    style IllegalBalanceException fill:#d63031,stroke:#c0392b,color:#fff,stroke-dasharray: 5 5
+    style InsufficientFundsException fill:#d63031,stroke:#c0392b,color:#fff,stroke-dasharray: 5 5
+    style IllegalAmountException fill:#d63031,stroke:#c0392b,color:#fff,stroke-dasharray: 5 5
+    style IllegalNameException fill:#d63031,stroke:#c0392b,color:#fff,stroke-dasharray: 5 5
