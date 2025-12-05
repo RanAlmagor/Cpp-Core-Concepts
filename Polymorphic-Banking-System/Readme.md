@@ -6,14 +6,14 @@
 ![Memory](https://img.shields.io/badge/memory-RAII%20%7C%20Smart%20Pointers-9cf.svg)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-> A robust **financial system** in modern C++ simulating a banking environment. It features **runtime polymorphism**, a clean **Printable** interface, **RAII** memory management using `std::unique_ptr`, and a comprehensive **Exception Handling** system replacing legacy error codes.
+> An **Object-Oriented banking simulation** designed to demonstrate advanced C++ concepts. It features **runtime polymorphism**, a clean **Printable** interface, **RAII** memory management using `std::unique_ptr`, and a comprehensive **Exception Handling** system.
 
 ---
 
 ## 🧭 Overview
 
 This repository models a banking domain with strict business rules. The design favors **safety** and **predictability**:
-- **Abstract Base Class:** `Account` defines the contract with pure-virtual `deposit`/`withdraw` methods returning `void` (failures throw exceptions).
+- **Abstract Base Class:** `Account` defines the contract with pure-virtual `deposit`/`withdraw` methods.
 - **Interface Segregation:** `I_Printable` allows uniform object streaming via `operator<<`.
 - **Robust Error Handling:** Custom exceptions derived from `std::exception` (e.g., `IllegalAmount`, `InsufficientFunds`, `IllegalName`).
 - **Modern Memory Management:** Full usage of `std::unique_ptr` and `std::make_unique` to prevent memory leaks.
@@ -22,7 +22,7 @@ This repository models a banking domain with strict business rules. The design f
 
 ## 🏗️ System Architecture (UML)
 
-The diagram illustrates the inheritance hierarchy and the dependency on custom exceptions. Note that transaction methods return `void` and rely on the stack unwinding mechanism for error reporting.
+The diagram illustrates the inheritance hierarchy and the dependency on custom exceptions. Note that transaction methods rely on the stack unwinding mechanism for error reporting rather than boolean return flags.
 
 ```mermaid
 classDiagram
@@ -31,7 +31,7 @@ classDiagram
     %% --- Core Abstractions ---
     class I_Printable {
         <<Interface>>
-        +print(ostream) void*
+        +print(std::ostream&) void
     }
 
     class Account {
