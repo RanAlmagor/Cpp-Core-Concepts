@@ -6,14 +6,14 @@
 
 ## 📖 Overview
 
-This repository serves as a master portfolio of my journey through **Modern C++ Engineering**.
-It contains a collection of focused projects, each designed to master specific pillars of the language, ranging from low-level memory mechanics to high-level object-oriented architecture.
+This repository documents my progression in **Modern C++**.
+It contains a collection of projects designed to practice specific core concepts, ranging from low-level memory mechanics to object-oriented architecture.
 
 **Key Focus Areas:**
 * **Object-Oriented Design (OOD)** & Polymorphism.
 * **Low-Level Memory Management** (RAII, Pointers, Stack vs Heap).
 * **Smart Pointers** & Modern Syntax (C++14/17/20).
-* **Exception Handling** & robust API Design.
+* **Exception Handling.**
 
 ---
 
@@ -22,9 +22,9 @@ It contains a collection of focused projects, each designed to master specific p
 ### 1️⃣ `movie-library`
 > **Focus:** Class Basics, Encapsulation & Data Structures
 
-A console-based application designed to manage a personal movie collection. This project establishes the foundations of class design.
-* **Key Concepts:** Classes, Objects, Access Modifiers, `std::vector` management.
-* **Architecture:** Clean separation of concerns using Header (`.h`) and Source (`.cpp`) files.
+A console-based application designed to manage a personal movie collection.
+* **Key Concepts:** Classes, Objects, Access Modifiers, `std::vector`.
+* **Architecture:** Separation of concerns using Header (`.h`) and Source (`.cpp`) files.
 
 > 📂 Folder: `movie-library/`
 
@@ -33,11 +33,11 @@ A console-based application designed to manage a personal movie collection. This
 ### 2️⃣ `My-String-Operator-Overloading`
 > **Focus:** Low-Level Memory Management (RAII) & Operator Overloading
 
-A comprehensive implementation of a custom String class, built from scratch to demonstrate mastery of raw pointers and manual memory handling.
+A custom String class implementation, built from scratch to understand raw pointers and manual memory handling mechanics.
 
 **Core Mechanics:**
-* **Rule of Five:** Manual implementation of Copy/Move Constructors & Assignment Operators.
-* **Deep Copying:** Safe manual heap allocation (`new[]`/`delete[]`).
+* **Rule of Five:** Implementation of Copy/Move Constructors & Assignment Operators.
+* **Deep Copying:** Manual heap allocation (`new[]`/`delete[]`).
 * **Operator Suite:** Arithmetic (`+`, `+=`), Comparison (`==`, `<`), Stream I/O (`<<`, `>>`), and Access (`[]`).
 
 > 📂 Folder: `My-String-Operator-Overloading/`
@@ -45,43 +45,43 @@ A comprehensive implementation of a custom String class, built from scratch to d
 ---
 
 ### 3️⃣ `Smart-Pointers-Lab`
-> **Focus:** Modern Memory Safety & Ownership Semantics
+> **Focus:** Modern Memory Safety
 
-A technical laboratory focused on mastering C++ Smart Pointers, eliminating the need for manual `new`/`delete`.
-This project demonstrates how to build complex data structures using **RAII** containers.
+A project focused on practicing C++ Smart Pointers to eliminate the need for manual `new`/`delete`.
+Demonstrates how to build data structures using **RAII** containers.
 
 **Key Concepts:**
-* **`std::unique_ptr`:** Exclusive ownership and `std::make_unique`.
-* **`std::shared_ptr`:** Shared ownership and reference counting mechanics.
-* **Complex Types:** Managing nested structures like `std::unique_ptr<std::vector<std::shared_ptr<T>>>`.
+* **`std::unique_ptr`:** Exclusive ownership.
+* **`std::shared_ptr`:** Shared ownership and reference counting.
+* **Complex Types:** Managing nested structures (e.g., vectors of pointers).
 
 > 📂 Folder: `Smart-Pointers-Lab/`
 
 ---
 
 ### 4️⃣ `Polymorphic-Banking-System`
-> **Focus:** Advanced OOD, Runtime Polymorphism, Exception Handling & Smart Pointers
+> **Focus:** Polymorphism, Inheritance & Exception Handling
 
-A robust, enterprise-grade financial simulation demonstrating modern C++ architectural patterns. This is the "Flagship Project" combining all previous concepts into a secure system.
+A banking simulation that applies Object-Oriented principles to manage different account types.
 
 **System Architecture:**
 * **Polymorphic Container:** Managed via `std::vector<std::unique_ptr<Account>>` for automatic memory cleanup.
-* **Inheritance Hierarchy:** Abstract base `Account` → `Savings` → `Checking` → `Trust` (VIP logic with limits & bonuses).
-* **Exception Safety:** Replaced legacy boolean returns with a full suite of custom exceptions (`InsufficientFunds`, `IllegalAmount`) inheriting from `std::exception`.
+* **Inheritance Hierarchy:** Abstract base `Account` → `Savings` → `Checking` → `Trust`.
+* **Exception Safety:** Using custom exceptions (`InsufficientFunds`, `IllegalAmount`) instead of error codes.
 * **Interface Segregation:** Implements `I_Printable` for uniform stream output.
 
 > 📂 Folder: `Polymorphic-Banking-System/`
 
 ---
 
-## 🧠 Roadmap & Mastery Goals
+## 🧠 Learning Path
 
-This portfolio documents a structured progression from syntax to architecture:
+A structured progression from syntax to architecture:
 
-1.  **Basics:** Understanding objects and containers (`movie-library`).
-2.  **The "Guts":** Mastering pointers, references, and memory layout (`My-String`).
-3.  **Modern Safety:** Moving from manual memory management to Smart Pointers (`Smart-Pointers-Lab`).
-4.  **Architecture:** Building scalable systems using Inheritance, Polymorphism, and Exceptions (`Banking-System`).
+1.  **Basics:** Objects and containers (`movie-library`).
+2.  **The "Guts":** Pointers, references, and memory layout (`My-String`).
+3.  **Modern Safety:** Moving to Smart Pointers (`Smart-Pointers-Lab`).
+4.  **Architecture:** Inheritance, Polymorphism, and Exceptions (`Banking-System`).
 
 ---
 
