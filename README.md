@@ -64,4 +64,4 @@ My first step into Class design and Encapsulation.
 
 ## 👨‍💻 Author
 **Ran Almagor**
-*Computer Science Graduate & C++ Developer*
+*Computer Science Student & C++ Developer*
