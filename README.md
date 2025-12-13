@@ -88,3 +88,7 @@ A structured progression from syntax to architecture:
 ## 👨‍💻 Author
 **Ran Almagor**
 *Computer Science Graduate & C++ Developer*
+
+---
+## 💡 Acknowledgements
+This repository contains my personal implementations and extended solutions for challenges from **Frank Mitropoulos's C++ Masterclass**.
